@@ -11,7 +11,7 @@
 	"miniprogramRoot": "dist/wx/",
 	"compileType": "miniprogram",
 	"appid": "wx0fa255eba195112d",
-	"projectname": "workplan",
+	"projectname": "wxmall",
 	"condition": {
 		"search": {
 			"current": -1,

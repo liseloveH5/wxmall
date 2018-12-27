@@ -4,6 +4,7 @@
     "van-notice-bar": "../../../static/vant/notice-bar/index",
     "van-tab": "../../../static/vant/tab/index",
     "van-tabs": "../../../static/vant/tabs/index",
-    "van-card": "../../../static/vant/card/index"
+    "van-card": "../../../static/vant/card/index",
+    "van-stepper": "../../../static/vant/stepper/index"
   }
 }

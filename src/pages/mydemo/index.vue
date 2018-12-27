@@ -13,14 +13,12 @@
           desc="描述信息"
           title="商品标题"
           :thumb="imageURL"
-        />
-        <van-card
-          num="2"
-          price="2.00"
-          desc="描述信息"
-          title="商品标题"
-          :thumb="imageURL"
-        />
+        >
+          <view slot="footer">
+            <van-stepper :value="val" bind:change="onChange" />
+          </view>
+        </van-card>
+
       </van-tab>
       <van-tab title="标签 2" tab-class="vertical">内容 2</van-tab>
       <van-tab title="标签 3" tab-class="vertical">内容 3</van-tab>
@@ -50,6 +48,7 @@
     name: "index",
     data () {
       return {
+        val:1,
         imageURL: 'http://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg',
         price: 3050,
         tip: true
