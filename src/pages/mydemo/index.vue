@@ -8,7 +8,7 @@
     <van-tabs swipeable custom-class="verical-tabs">
       <van-tab title="点单" >
         <view style="display: flex">
-          <van-badge-group :active="active" @change="onChange" style="width:85px;">
+          <van-badge-group :active="currId" @change="onChange" style="width:85px;">
             <van-badge title="创业专享" />
             <van-badge title="咖啡系列" info="8" />
             <van-badge title="套餐系列" info="99" />
@@ -17,14 +17,15 @@
           <view style="flex: 1">
             <view v-if="currId === 0">
               <van-card
+                v-for="(item, index) in goodslist"
+                :key="index"
                 :price="item.price"
                 :desc="item.desc"
                 :title="item.title"
                 :thumb="item.imgUrl"
-                v-for="item in goodslist"
               >
                 <view slot="tags" style="float: right;">
-                  <van-stepper v-if="item.num > 0" :value="item.num" min="0" @change="onChangeNum" />
+                  <van-stepper v-if="item.num > 0" :value="item.num" min="0" @change="onChangeNum($event, index)" />
                   <view v-else @click="item.num = item.num + 1"><van-icon name="add" size="26px" color="#f44" /></view>
                 </view>
               </van-card>
@@ -59,16 +60,18 @@
     data () {
       return {
         goodslist:[
-          {id:555, title:'商品标题1', decs:'描述信息', price: '55',  num: 0, imgUrl:'http://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg'},
-          {id:11, title:'商品标题2', decs:'描述信息', price: '6',  num: 0, imgUrl:'http://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg'},
-          {id:7, title:'商品标题3', decs:'描述信息', price: '66',  num: 0, imgUrl:'http://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg'},
-          {id:8, title:'商品标题4', decs:'描述信息', price: '88',  num: 0, imgUrl:'http://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg'}
+          {id:555, title:'商品标题1', desc:'描述信息', price: '55',  num: 0, imgUrl:'http://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg'},
+          {id:11, title:'商品标题2', desc:'描述信息', price: '6',  num: 0, imgUrl:'http://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg'},
+          {id:7, title:'商品标题3', desc:'描述信息', price: '66',  num: 0, imgUrl:'http://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg'},
+          {id:8, title:'商品标题4', desc:'描述信息', price: '88',  num: 0, imgUrl:'http://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg'}
+        ],
+        pageNav:[
+          {name: '创业专享'},
+          {name: '咖啡系列'},
+          {name: '套餐系列'},
+          {name: '下午茶'}
         ],
         currId: 0,
-        active: 0,
-        currNum: 0,
-        imageURL: 'http://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg',
-        price: 3050,
         tip: true
       }
     },
@@ -84,8 +87,8 @@
       onChange(event) {
         this.currId = event.mp.detail
       },
-      onChangeNum(event) {
-        this.goodslist[index].num =  event.mp.detail  // 有问题（index没传）
+      onChangeNum(event, idx) {
+        this.goodslist[idx].num =  event.mp.detail
       }
     }
   }
