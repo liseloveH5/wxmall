@@ -1,41 +1,51 @@
 <template>
   <div>
     <van-notice-bar
-      left-icon="https://img.yzcdn.cn/1.png"
+      left-icon="volume-o"
       mode="closeable"
       text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。"
     />
-    <van-tabs swipeable class="mode-class">
-      <van-tab title="标签 1" tab-class="vertical">
-        <van-card
-          num="2"
-          price="2.00"
-          desc="描述信息"
-          title="商品标题"
-          :thumb="imageURL"
-        >
-          <view slot="footer">
-            <van-stepper :value="val" bind:change="onChange" />
+    <van-tabs swipeable custom-class="verical-tabs">
+      <van-tab title="点单" >
+        <view style="display: flex">
+          <van-badge-group :active="active" @change="onChange" style="width:85px;">
+            <van-badge title="创业专享" />
+            <van-badge title="咖啡系列" info="8" />
+            <van-badge title="套餐系列" info="99" />
+            <van-badge title="下午茶" info="99+" />
+          </van-badge-group>
+          <view style="flex: 1">
+            <view v-if="currId === 0">
+              <van-card
+                :price="item.price"
+                :desc="item.desc"
+                :title="item.title"
+                :thumb="item.imgUrl"
+                v-for="item in goodslist"
+              >
+                <view slot="tags" style="float: right;">
+                  <van-stepper v-if="item.num > 0" :value="item.num" min="0" @change="onChangeNum" />
+                  <view v-else @click="item.num = item.num + 1"><van-icon name="add" size="26px" color="#f44" /></view>
+                </view>
+              </van-card>
+            </view>
           </view>
-        </van-card>
+        </view>
 
       </van-tab>
-      <van-tab title="标签 2" tab-class="vertical">内容 2</van-tab>
-      <van-tab title="标签 3" tab-class="vertical">内容 3</van-tab>
-      <van-tab title="标签 4" tab-class="vertical">内容 4</van-tab>
-      <van-tab title="标签 5" tab-class="vertical">内容 5</van-tab>
-      <van-tab title="标签 6" tab-class="vertical">内容 6</van-tab>
-      <van-tab title="标签 7" tab-class="vertical">内容 7</van-tab>
-      <van-tab title="标签 8" tab-class="vertical">内容 8</van-tab>
-      <van-tab title="标签 9" tab-class="vertical">内容 9</van-tab>
+      <van-tab title="优惠" >内容 2</van-tab>
+      <van-tab title="评价(64)" >内容 3</van-tab>
+      <van-tab title="商家信息" >内容 4</van-tab>
     </van-tabs>
     <van-submit-bar
       :price="price"
-      button-text="提交订单"
-      bind:submit="onClickButton"
+      button-text="下单"
+      @submit="onClickButton"
       :tip="tip"
     >
-      <van-tag type="primary">标签</van-tag>
+      <van-tag type="primary" style="padding-left:20px;">
+        <van-icon name="shopping-cart" size="30px" color="#f44" />
+      </van-tag>
       <view slot="tip">
         您的收货地址不支持同城送, <text>修改地址</text>
       </view>
@@ -48,7 +58,15 @@
     name: "index",
     data () {
       return {
-        val:1,
+        goodslist:[
+          {id:555, title:'商品标题1', decs:'描述信息', price: '55',  num: 0, imgUrl:'http://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg'},
+          {id:11, title:'商品标题2', decs:'描述信息', price: '6',  num: 0, imgUrl:'http://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg'},
+          {id:7, title:'商品标题3', decs:'描述信息', price: '66',  num: 0, imgUrl:'http://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg'},
+          {id:8, title:'商品标题4', decs:'描述信息', price: '88',  num: 0, imgUrl:'http://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg'}
+        ],
+        currId: 0,
+        active: 0,
+        currNum: 0,
         imageURL: 'http://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg',
         price: 3050,
         tip: true
@@ -62,22 +80,28 @@
       onClickButton() {
         Toast('点击按钮');
       },
+
+      onChange(event) {
+        this.currId = event.mp.detail
+      },
+      onChangeNum(event) {
+        this.goodslist[index].num =  event.mp.detail  // 有问题（index没传）
+      }
     }
   }
 </script>
 
 <style>
-  .mode-class{
-    background: red;
-  }
-  .vertical{
-    background: red;
-  }
-  .vertical-mode .van-tabs__nav--line{
-    flex-direction: column!important;
-  }
-  .vertical-mode .van-tabs--line .van-tabs__wrap{
-    width: 100px;
-  }
+  /*.verical-tabs{*/
+    /*display: flex!important;*/
+  /*}*/
+  /*.verical-tabs .van-tabs__nav{*/
+    /*flex-direction: column;*/
+  /*}*/
+  /*.verical-tabs .van-tabs__wrap{*/
+    /*width: 100px;*/
+    /*height: auto!important;*/
+  /*}*/
+
 
 </style>

@@ -5,6 +5,10 @@
     "van-tab": "../../../static/vant/tab/index",
     "van-tabs": "../../../static/vant/tabs/index",
     "van-card": "../../../static/vant/card/index",
-    "van-stepper": "../../../static/vant/stepper/index"
+    "van-stepper": "../../../static/vant/stepper/index",
+    "van-button": "../../../static/vant/button/index",
+    "van-badge": "../../../static/vant/badge/index",
+    "van-badge-group": "../../../static/vant/badge-group/index",
+    "van-icon": "../../../static/vant/icon/index"
   }
 }

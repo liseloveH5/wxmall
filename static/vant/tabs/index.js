@@ -1,10 +1,6 @@
 import { VantComponent } from '../common/component';
 import { touch } from '../mixins/touch';
 VantComponent({
-  externalClasses: ['mode-class'],
-  options: {
-    addGlobalClass: true,
-  },
   mixins: [touch],
   relation: {
     name: 'tab',

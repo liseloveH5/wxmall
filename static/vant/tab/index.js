@@ -1,6 +1,5 @@
 import { VantComponent } from '../common/component';
 VantComponent({
-  externalClasses: ['tab-class'],
   relation: {
     name: 'tabs',
     type: 'ancestor'
