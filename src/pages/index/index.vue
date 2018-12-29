@@ -18,7 +18,8 @@
       <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
     </form>
     <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a>
-    <a href="/pages/mydemo/main" class="counter">去往newPage</a>
+    <a href="/pages/toPay/main" class="counter">去往pay</a>
+    <a href="/pages/goods/main" class="counter">去往商品列表页</a>
   </div>
 </template>
 

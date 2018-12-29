@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/index/main",
-    "pages/logs/main",
     "pages/counter/main",
-    "pages/mydemo/main"
+    "pages/goods/main",
+    "pages/toPay/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
